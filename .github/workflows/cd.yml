@@ -2,10 +2,7 @@ name: Continuous Delivery
 
 on:
   workflow_dispatch:
-
-  release:
-    types:
-      - created
+  push:
 
 permissions:
   contents: read
@@ -45,6 +42,7 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     needs: pre_flight_check
     strategy:
+      fail-fast: false
       matrix:
         os: [ ubuntu, windows, macos ]
         qemu: [ '' ]
